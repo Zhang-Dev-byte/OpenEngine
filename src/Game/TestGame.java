@@ -18,10 +18,12 @@ import OpenEngine.Renderer.Mesh;
 import OpenEngine.Renderer.Texture;
 import OpenEngine.Renderer.Window;
 
+
 public class TestGame extends Game
 {
 	public void Init()
 	{
+		
 		Mesh mesh = new Mesh("plane3.obj");
 		Material material2 = new Material(new Texture("bricks.jpg"), 1, 8,
 			new Texture("bricks_normal.jpg"), new Texture("bricks_disp.png"), 0.03f, -0.5f);
