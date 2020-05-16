@@ -1,11 +1,11 @@
 package OpenEngine.Core;
 
-public class Vector3f 
+public class Vector3f
 {
 	private float m_x;
 	private float m_y;
 	private float m_z;
-	
+
 	public Vector3f(float x, float y, float z)
 	{
 		this.m_x = x;
@@ -22,25 +22,44 @@ public class Vector3f
 	{
 		return Math.max(m_x, Math.max(m_y, m_z));
 	}
+	public Vector3f Max(Vector3f other)
+	{
+		Vector3f result = new Vector3f(0.0f,0.0f,0.0f);
+		for(int i = 0;i<3;i++) {
+			switch(i){
+			case 0:
+				result.SetX(this.GetX() > other.GetX() ? this.GetX() : other.GetX());
+				break;
+			case 1:
+				result.SetY(this.GetY() > other.GetY() ? this.GetY() : other.GetY());
+				break;
+
+			case 2:
+				result.SetZ(this.GetZ() > other.GetZ() ? this.GetZ() : other.GetZ());
+				break;
+			}
+		}
+		return result;
+	}
 
 	public float Dot(Vector3f r)
 	{
 		return m_x * r.GetX() + m_y * r.GetY() + m_z * r.GetZ();
 	}
-	
+
 	public Vector3f Cross(Vector3f r)
 	{
 		float x_ = m_y * r.GetZ() - m_z * r.GetY();
 		float y_ = m_z * r.GetX() - m_x * r.GetZ();
 		float z_ = m_x * r.GetY() - m_y * r.GetX();
-		
+
 		return new Vector3f(x_, y_, z_);
 	}
-	
+
 	public Vector3f Normalized()
 	{
 		float length = Length();
-		
+
 		return new Vector3f(m_x / length, m_y / length, m_z / length);
 	}
 
@@ -72,47 +91,47 @@ public class Vector3f
 	{
 		return new Vector3f(m_x + r.GetX(), m_y + r.GetY(), m_z + r.GetZ());
 	}
-	
+
 	public Vector3f Add(float r)
 	{
 		return new Vector3f(m_x + r, m_y + r, m_z + r);
 	}
-	
+
 	public Vector3f Sub(Vector3f r)
 	{
 		return new Vector3f(m_x - r.GetX(), m_y - r.GetY(), m_z - r.GetZ());
 	}
-	
+
 	public Vector3f Sub(float r)
 	{
 		return new Vector3f(m_x - r, m_y - r, m_z - r);
 	}
-	
+
 	public Vector3f Mul(Vector3f r)
 	{
 		return new Vector3f(m_x * r.GetX(), m_y * r.GetY(), m_z * r.GetZ());
 	}
-	
+
 	public Vector3f Mul(float r)
 	{
 		return new Vector3f(m_x * r, m_y * r, m_z * r);
 	}
-	
+
 	public Vector3f Div(Vector3f r)
 	{
 		return new Vector3f(m_x / r.GetX(), m_y / r.GetY(), m_z / r.GetZ());
 	}
-	
+
 	public Vector3f Div(float r)
 	{
 		return new Vector3f(m_x / r, m_y / r, m_z / r);
 	}
-	
+
 	public Vector3f Abs()
 	{
 		return new Vector3f(Math.abs(m_x), Math.abs(m_y), Math.abs(m_z));
 	}
-	
+
 	public String toString()
 	{
 		return "(" + m_x + " " + m_y + " " + m_z + ")";

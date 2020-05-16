@@ -12,6 +12,7 @@ import OpenEngine.Core.GameObject;
 import OpenEngine.Core.Matrix4f;
 import OpenEngine.Core.Quaternion;
 import OpenEngine.Core.Vector3f;
+import OpenEngine.Lua.LuaCompiler;
 import OpenEngine.Renderer.Attenuation;
 import OpenEngine.Renderer.Material;
 import OpenEngine.Renderer.Mesh;
@@ -23,14 +24,15 @@ public class TestGame extends Game
 {
 	public void Init()
 	{
-		
+
+		LuaCompiler.Compile("oof.lua", this);
+
 		Mesh mesh = new Mesh("plane3.obj");
 		Material material2 = new Material(new Texture("bricks.jpg"), 1, 8,
 			new Texture("bricks_normal.jpg"), new Texture("bricks_disp.png"), 0.03f, -0.5f);
 
 		Material material = new Material(new Texture("bricks2.jpg"), 1, 8,
 				new Texture("bricks2_normal.png"), new Texture("bricks2_disp.jpg"), 0.04f, -1.0f);
-
 		Mesh tempMesh = new Mesh("monkey3.obj");
 
 		MeshRenderer meshRenderer = new MeshRenderer(mesh, material);
